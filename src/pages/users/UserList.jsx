@@ -1,11 +1,34 @@
-import { BsPlus, BsSearch } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import axios from "axios";
+import { useEffect, useState } from "react";
 const ListPageLayout = () => {
+  const [data, setData] = useState([]);
+  console.log(
+    "🚀 ~ file: UserList.jsx ~ line 16 ~ ListPageLayout ~ data",
+    data
+  );
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await axios.get("http://localhost:5000/users");
+      setData(res.data);
+    };
+    getData();
+  }, []);
+
   return (
     <>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 px-5 py-8 border border-gray-200 bg-white rounded-lg items-center shadow-lg mb-10">
-        <h1 className="text-xl font-medium mb-2 md:mb-0">Courses</h1>
+        <h1 className="text-xl font-medium mb-2 md:mb-0">Users</h1>
         <div className="relative flex flex-col lg:flex-row gap-4">
           <BsSearch className="absolute top-4 left-3 text-gray-600" />
           <input
@@ -13,14 +36,42 @@ const ListPageLayout = () => {
             type="number"
             placeholder="search here"
           />
-          <Link to={"/addcourse"}>
+          {/* <Link to={"/adduser"}>
             <button className="flex w-full items-center gap-x-2 px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-600 transition duration-500 ring-offset-2 text-white">
               <BsPlus className="text-2xl" />
-              Course
+              User
             </button>
-          </Link>
+          </Link> */}
         </div>
       </div>
+
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Email</TableCell>
+              <TableCell align="center">Courses</TableCell>
+              <TableCell align="center">Access</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="center">{row.email}</TableCell>
+                <TableCell align="center">{row.courses}</TableCell>
+                <TableCell align="center">
+                  <Link to={`/adduser?email=${row.email}`}>
+                    <button className="border">X</button>
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
       <div>
         {/* <TableContainer component={Paper} sx={{ boxShadow: '0px 8px 10px #ddd', border: '1px solid #ddd', borderRadius: '0.5rem' }}>
