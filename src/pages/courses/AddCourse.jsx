@@ -13,6 +13,10 @@ const AddCourse = () => {
     const courseDetailsRef = useRef('');
     const coursePriceRef = useRef('');
     const courseImageRef = useRef('');
+    const driveRef = useRef('');
+    const videoRef = useRef('');
+    const pptRef = useRef('');
+    const codeRef = useRef('');
 
     const { getRootProps, getInputProps } = useDropzone({
         accept: "image/*",
@@ -40,12 +44,14 @@ const AddCourse = () => {
         const courseDetails = courseDetailsRef.current.value;
         const coursePrice = Number(coursePriceRef.current.value);
         const courseImage = courseImageRef.current.value;
-        const data = { courseName, institutionName, courseDuration, courseDetails, coursePrice, courseImage };
-        console.log("🚀 ~ file: AddCourse.jsx ~ line 42 ~ handleCourseUpload ~ data", data);
+        const drive = driveRef.current.value;
+        const ppt = pptRef.current.value;
+        const video = videoRef.current.value;
+        const code = Number(codeRef.current.value);
 
         imageUploader(files, setFiles)
             .then(image => {
-                const data = { courseName, institutionName, courseDuration, courseDetails, coursePrice, courseImage, image };
+                const data = { courseName, institutionName, courseDuration, courseDetails, coursePrice, courseImage, image, drive, ppt, video, code };
 
                 axios.post('https://autism60089s.herokuapp.com/course', data).then(res => {
                     console.log("🚀 ~ file: AddCourse.jsx ~ line 50 ~ imageUploader ~ res", res);
@@ -151,6 +157,62 @@ const AddCourse = () => {
                                                     name="region"
                                                     id="region"
                                                     ref={coursePriceRef}
+                                                    autoComplete="address-level1"
+                                                    className="mt-1 px-5 py-2 border border-gray-300 rounded-lg w-full outline-none focus:ring-2 ring-blue-600 transition duration-300 mb-3"
+
+                                                />
+                                            </div>
+                                            <div className="col-span-6 sm:col-span-3 lg:col-span-3">
+                                                <label htmlFor="region" className="block text-sm font-medium text-gray-700">
+                                                    Drive
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    name="region"
+                                                    id="region"
+                                                    ref={driveRef}
+                                                    autoComplete="address-level1"
+                                                    className="mt-1 px-5 py-2 border border-gray-300 rounded-lg w-full outline-none focus:ring-2 ring-blue-600 transition duration-300 mb-3"
+
+                                                />
+                                            </div>
+                                            <div className="col-span-6 sm:col-span-3 lg:col-span-3">
+                                                <label htmlFor="region" className="block text-sm font-medium text-gray-700">
+                                                    Vidoe
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    name="region"
+                                                    id="region"
+                                                    ref={videoRef}
+                                                    autoComplete="address-level1"
+                                                    className="mt-1 px-5 py-2 border border-gray-300 rounded-lg w-full outline-none focus:ring-2 ring-blue-600 transition duration-300 mb-3"
+
+                                                />
+                                            </div>
+                                            <div className="col-span-6 sm:col-span-3 lg:col-span-4">
+                                                <label htmlFor="region" className="block text-sm font-medium text-gray-700">
+                                                    PPT
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    name="region"
+                                                    id="region"
+                                                    ref={pptRef}
+                                                    autoComplete="address-level1"
+                                                    className="mt-1 px-5 py-2 border border-gray-300 rounded-lg w-full outline-none focus:ring-2 ring-blue-600 transition duration-300 mb-3"
+
+                                                />
+                                            </div>
+                                            <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                                                <label htmlFor="region" className="block text-sm font-medium text-gray-700">
+                                                    Code
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    name="region"
+                                                    id="region"
+                                                    ref={codeRef}
                                                     autoComplete="address-level1"
                                                     className="mt-1 px-5 py-2 border border-gray-300 rounded-lg w-full outline-none focus:ring-2 ring-blue-600 transition duration-300 mb-3"
 
