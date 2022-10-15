@@ -35,7 +35,7 @@ const AddUserAccess = () => {
 		axios.put(`http://localhost:5000/users/${email}`, data)
 			.then(res => {
 				if (res.status === 200) {
-					console.log('updated');
+					alert('updated');
 				}
 			});
 
