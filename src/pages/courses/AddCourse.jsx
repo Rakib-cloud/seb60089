@@ -120,7 +120,7 @@ const AddCourse = () => {
 
                                             <div className="col-span-6 sm:col-span-6 lg:col-span-6">
                                                 <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                                                    Course Details
+                                                    Course Description
                                                 </label>
                                                 <input
                                                     type="text"
@@ -164,7 +164,7 @@ const AddCourse = () => {
                                             </div>
                                             <div className="col-span-6 sm:col-span-3 lg:col-span-3">
                                                 <label htmlFor="region" className="block text-sm font-medium text-gray-700">
-                                                    Drive
+                                                    Quiz link
                                                 </label>
                                                 <input
                                                     type="text"
@@ -178,7 +178,7 @@ const AddCourse = () => {
                                             </div>
                                             <div className="col-span-6 sm:col-span-3 lg:col-span-3">
                                                 <label htmlFor="region" className="block text-sm font-medium text-gray-700">
-                                                    Vidoe
+                                                    Video link
                                                 </label>
                                                 <input
                                                     type="text"

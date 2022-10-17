@@ -19,7 +19,7 @@ const ListPageLayout = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get("http://localhost:5000/users");
+      const res = await axios.get("https://autism60089s.herokuapp.com/users");
       setData(res.data);
     };
     getData();

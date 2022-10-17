@@ -16,10 +16,10 @@ const AddUserAccess = () => {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost:5000/course")
+			.get("https://autism60089s.herokuapp.com/course")
 			.then((res) => setCourses(res.data));
 		axios
-			.get(`http://localhost:5000/users/${email}`)
+			.get(`https://autism60089s.herokuapp.com/users/${email}`)
 			.then((res) => {
 				setInfo(res.data);
 				setAcceced(res.data.courses);
@@ -32,7 +32,7 @@ const AddUserAccess = () => {
 			email,
 			courses: acceded
 		};
-		axios.put(`http://localhost:5000/users/${email}`, data)
+		axios.put(`https://autism60089s.herokuapp.com/users/${email}`, data)
 			.then(res => {
 				if (res.status === 200) {
 					alert('updated');
